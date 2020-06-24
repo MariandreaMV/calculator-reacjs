@@ -17,20 +17,16 @@ class Calculator extends Component{
 
   generateCalculator = () => {
     let board = [];
-    let cont = 23;
-    for (var i = 0; i < 6; i++) {
+    let cont = 19;
+    for (var i = 0; i < 5; i++) {
       let row = [];
 
       for (var j = 0; j < 4; j++) {
 
         switch(cont) {
-          case 23:  row.push(<Cell key = {cont} display ={"%"} num ={cont} printScream = {this.printScream} />); break;
-          case 22:  row.push(<Cell key = {cont} display ={"CE"} num ={cont} printScream = {this.printScream} />);break;
-          case 21:  row.push(<Cell key = {cont} display ={"C"} num ={cont} printScream = {this.printScream} />);break;
-          case 20:  row.push(<Cell key = {cont} display ={"<"} num ={cont} printScream = {this.printScream} />);break;
-          case 19:  row.push(<Cell key = {cont} display ={"1/x"} num ={cont} printScream = {this.printScream} />);break;
-          case 18:  row.push(<Cell key = {cont} display ={"x^2"} num ={cont} printScream = {this.printScream} />);break;
-          case 17:  row.push(<Cell key = {cont} display ={"x^(1/2)"} num ={cont} printScream = {this.printScream} />);break;
+          case 19:  row.push(<Cell key = {cont} display ={"%"} num ={cont} printScream = {this.printScream} />); break;
+          case 18:  row.push(<Cell key = {cont} display ={"CE"} num ={cont} printScream = {this.printScream} />);break;
+          case 17:  row.push(<Cell key = {cont} display ={"C"} num ={cont} printScream = {this.printScream} />);break;
           case 16:  row.push(<Cell key = {cont} display ={"/"} num ={cont} printScream = {this.printScream} />);break;
           case 15:  row.push(<Cell key = {cont} display ={"+"} num ={cont} printScream = {this.printScream} />);break;
           case 14:  row.push(<Cell key = {cont} display ={"-"} num ={cont} printScream = {this.printScream} />);break;
@@ -53,12 +49,11 @@ class Calculator extends Component{
 
 
   calculate = (n1) => {
-    let number1 = parseInt(n1);
-    let number2 = parseInt(this.state.number);
+    let number1 = parseFloat(n1);
+    let number2 = parseFloat(this.state.number);
     console.log(number1);
-    console.log(number2)
     switch(this.state.op) {
-      case  23: this.setState({ number: `${number1%number2 }`});break;
+      case  19: this.setState({ number: `${number1%number2 }`});break;
       case  16: this.setState({ number: `${number1/number2 }`});break;
       case  15: this.setState({ number: `${number1+number2 }`});break;
       case  14: this.setState({ number: `${number1-number2 }`});break;
@@ -86,7 +81,7 @@ class Calculator extends Component{
   printScream = (pressed) => {
 
     if(pressed > 9){
-      if(pressed !=12 && pressed!=22){
+      if(pressed !=12 && pressed!=18 && pressed!=19 && pressed!= 11){
         this.setState({
           op: pressed
         })
@@ -95,12 +90,12 @@ class Calculator extends Component{
       let simb;
       console.log(pressed);
       switch(pressed) {
-        case 23:  simb ="%"; break;
-        case 21: this.setState({
+        case 19:  simb ="%"; break;
+        case 17: this.setState({
                     number: "",
                     simbol:0,
                     acumulator:0});break;
-        case 22:  this.setState({
+        case 18:  this.setState({
                     number: "",
                     simbol:0,
                     acumulator:0});break;
@@ -108,7 +103,10 @@ class Calculator extends Component{
         case 15:  simb = "+";break;
         case 14:  simb = "-";break;
         case 13:  simb = "*";break;
-        case 11:  simb = ".";break;
+        case 11:  this.setState({
+                    keyPressed: pressed,
+                    number: `${this.state.number}.`,
+                  });break;
         case 12:  simb = "=";break;
       }
       this.setState({

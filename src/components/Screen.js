@@ -20,13 +20,13 @@ class Screen extends Component{
 
         //then is pressing a simbol
         console.log(nextProps);
-        if(nextProps.keyPressed > 9){
-          if(nextProps.keyPressed==22 || nextProps.keyPressed ==21 ){
+        if(nextProps.keyPressed > 9 && nextProps.keyPressed !=11 ){
+          if(nextProps.keyPressed==17 || nextProps.keyPressed ==18 ){
             this.setState({
               op:0,
               actual: 0
             })
-            if(nextProps.keyPressed==21)
+            if(nextProps.keyPressed==17)
               this.setState({
                 previous:0
               })
