@@ -9,14 +9,11 @@ class Cell extends Component{
         numero: null,
         operation: "",
       }
-
     }
-
 
     handleclick = () => {
-      this.props.printScream(this.props.num);
+      this.props.printScreen(this.props.num);
     }
-
 
     render(){
       return(

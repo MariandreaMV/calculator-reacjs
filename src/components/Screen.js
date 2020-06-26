@@ -18,7 +18,6 @@ class Screen extends Component{
 
     componentWillReceiveProps(nextProps){
         //then is pressing a simbol
-        console.log(nextProps);
         if(nextProps.keyPressed > 9 && nextProps.keyPressed !=11 && nextProps.keyPressed!= 10 ){
           if(nextProps.keyPressed==17 || nextProps.keyPressed ==18 ){
             this.setState({
@@ -32,12 +31,14 @@ class Screen extends Component{
           }else{
           if(this.state.previous == 0){
             this.setState({
+              actual: nextProps.number,
               previous : `${this.state.actual}${nextProps.simbol}`,
 
             })
           }else{
             //tiping numbers
             this.setState({
+              actual: nextProps.number,
               previous : `${this.state.previous} ${this.state.actual} ${nextProps.simbol}`,
             })
           }
@@ -50,7 +51,6 @@ class Screen extends Component{
 
           //asking for the total
           if(nextProps.keyPressed == 12){
-            nextProps.calculate(this.state.n1);
             this.setState({
               n1: null,
             })
