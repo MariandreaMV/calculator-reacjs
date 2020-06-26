@@ -51,7 +51,9 @@ class Calculator extends Component{
   calculate = (n1) => {
     let number1 = parseFloat(n1);
     let number2 = parseFloat(this.state.number);
-    console.log(number1);
+    console.log("numer1:",number1);
+    console.log("simbol: ",this.state.op);
+    console.log("numer2:",number2);
     switch(this.state.op) {
       case  19: this.setState({ number: `${number1%number2 }`});break;
       case  16: this.setState({ number: `${number1/number2 }`});break;
@@ -81,14 +83,13 @@ class Calculator extends Component{
   printScream = (pressed) => {
 
     if(pressed > 9){
-      if(pressed !=12 && pressed!=18 && pressed!=19 && pressed!= 11){
+      if(pressed !=12 && pressed!=18 && pressed!=19 && pressed!= 11 &&pressed !=10){
         this.setState({
           op: pressed
         })
       }
 
       let simb;
-      console.log(pressed);
       switch(pressed) {
         case 19:  simb ="%"; break;
         case 17: this.setState({
@@ -103,6 +104,19 @@ class Calculator extends Component{
         case 15:  simb = "+";break;
         case 14:  simb = "-";break;
         case 13:  simb = "*";break;
+        case 10:  let num = parseFloat(this.state.number);
+                  if (num < 0 ){
+                    num = num * (-1);
+                    this.setState({
+                      keyPressed: pressed,
+                      number: `${num}`,
+                    });break;
+                  }
+                  else
+                  this.setState({
+                    keyPressed: pressed,
+                    number: `-${this.state.number}`,
+                  });break;
         case 11:  this.setState({
                     keyPressed: pressed,
                     number: `${this.state.number}.`,

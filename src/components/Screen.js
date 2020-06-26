@@ -17,10 +17,9 @@ class Screen extends Component{
 
 
     componentWillReceiveProps(nextProps){
-
         //then is pressing a simbol
         console.log(nextProps);
-        if(nextProps.keyPressed > 9 && nextProps.keyPressed !=11 ){
+        if(nextProps.keyPressed > 9 && nextProps.keyPressed !=11 && nextProps.keyPressed!= 10 ){
           if(nextProps.keyPressed==17 || nextProps.keyPressed ==18 ){
             this.setState({
               op:0,
@@ -56,7 +55,6 @@ class Screen extends Component{
               n1: null,
             })
           }
-
           nextProps.operating(nextProps.keyPressed);
         }
         }else{
